@@ -1,0 +1,29 @@
+.avatarProfile {
+  width: 150px;
+  height: 150px;
+  border: 1px rgb(150, 150, 150) solid;
+  border-radius: 15px;
+}
+
+.profileAvatarCard, .currentInfoCard, .updateInfoCard {
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 10px;
+  }
+
+  .infoName {
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  .infoVal {
+    font-weight: normal;
+    font-size: 1em;
+  }
+
+  .userInfo {
+    margin: 30px 5px;
+  }
+
+.container {
+  padding-top: 80px;
+}

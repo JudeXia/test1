@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 68.0.3440 (Windows 10 0.0.0)" package="" timestamp="2018-10-20T04:42:51" id="0" hostname="Jude" tests="22" errors="0" failures="0" time="1.78">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"/>
+  </properties>
+  <testcase name="AppRoutingModule should create an instance" time="0.004" classname="Chrome_68_0_3440_(Windows_10_0_0_0).AppRoutingModule"/>
+  <testcase name="AppComponent should create the app" time="0.03" classname="Chrome_68_0_3440_(Windows_10_0_0_0).AppComponent"/>
+  <testcase name="AuthComponent should create" time="0.23" classname="Chrome_68_0_3440_(Windows_10_0_0_0).AuthComponent"/>
+  <testcase name="LoginComponent should create" time="0.048" classname="Chrome_68_0_3440_(Windows_10_0_0_0).LoginComponent"/>
+  <testcase name="LoginComponent should update success message (for displaying login success message to user)" time="0.047" classname="Chrome_68_0_3440_(Windows_10_0_0_0).LoginComponent"/>
+  <testcase name="LoginComponent should update error message (for displaying login error mesage to user)" time="0.123" classname="Chrome_68_0_3440_(Windows_10_0_0_0).LoginComponent"/>
+  <testcase name="RegisterationComponent should create" time="0.122" classname="Chrome_68_0_3440_(Windows_10_0_0_0).RegisterationComponent"/>
+  <testcase name="FollowingService should be created" time="0.009" classname="Chrome_68_0_3440_(Windows_10_0_0_0).FollowingService"/>
+  <testcase name="FollowingComponent should create" time="0.035" classname="Chrome_68_0_3440_(Windows_10_0_0_0).FollowingComponent"/>
+  <testcase name="MainComponent should create" time="0.121" classname="Chrome_68_0_3440_(Windows_10_0_0_0).MainComponent"/>
+  <testcase name="MainComponent should fetch articles for current logged in user" time="0.109" classname="Chrome_68_0_3440_(Windows_10_0_0_0).MainComponent"/>
+  <testcase name="PostsService should be created" time="0.015" classname="Chrome_68_0_3440_(Windows_10_0_0_0).PostsService"/>
+  <testcase name="PostsComponent should create" time="0.108" classname="Chrome_68_0_3440_(Windows_10_0_0_0).PostsComponent"/>
+  <testcase name="PostsComponent should update the search keyword" time="0.094" classname="Chrome_68_0_3440_(Windows_10_0_0_0).PostsComponent"/>
+  <testcase name="UserService should be created" time="0.092" classname="Chrome_68_0_3440_(Windows_10_0_0_0).UserService"/>
+  <testcase name="UserService should log in a previously registered user (not new users)" time="0.09" classname="Chrome_68_0_3440_(Windows_10_0_0_0).UserService"/>
+  <testcase name="UserService should not log in an invalid user" time="0.085" classname="Chrome_68_0_3440_(Windows_10_0_0_0).UserService"/>
+  <testcase name="UserComponent should create" time="0.109" classname="Chrome_68_0_3440_(Windows_10_0_0_0).UserComponent"/>
+  <testcase name="NavigatorComponent should create" time="0.028" classname="Chrome_68_0_3440_(Windows_10_0_0_0).NavigatorComponent"/>
+  <testcase name="NavigatorComponent should log out a user (login state should be cleared)" time="0.023" classname="Chrome_68_0_3440_(Windows_10_0_0_0).NavigatorComponent"/>
+  <testcase name="ProfileComponent should create" time="0.145" classname="Chrome_68_0_3440_(Windows_10_0_0_0).ProfileComponent"/>
+  <testcase name="ProfileComponent should fetch the logged in user's profile information" time="0.113" classname="Chrome_68_0_3440_(Windows_10_0_0_0).ProfileComponent"/>
+  <system-out>
+    <![CDATA[Chrome 68.0.3440 (Windows 10 0.0.0) ERROR: 'Unhandled Promise rejection:', 'Cannot read property 'textContent' of null', '; Zone:', 'ProxyZone', '; Task:', 'Promise.then', '; Value:', TypeError: Cannot read property 'textContent' of null
+TypeError: Cannot read property 'textContent' of null
+    at http://localhost:9877/src/app/auth/login/login.component.spec.ts?:44:57
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:388:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:288:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:387:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9877/node_modules/zone.js/dist/zone.js?:138:1)
+    at http://localhost:9877/node_modules/zone.js/dist/zone.js?:872:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:421:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:319:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:420:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.runTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:188:1), 'TypeError: Cannot read property 'textContent' of null
+    at http://localhost:9877/src/app/auth/login/login.component.spec.ts?:44:57
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:388:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:288:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:387:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9877/node_modules/zone.js/dist/zone.js?:138:1)
+    at http://localhost:9877/node_modules/zone.js/dist/zone.js?:872:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:421:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:319:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:420:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.runTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:188:1)'
+,Chrome 68.0.3440 (Windows 10 0.0.0) ERROR: 'Unhandled Promise rejection:', 'Cannot read property 'textContent' of null', '; Zone:', 'ProxyZone', '; Task:', 'Promise.then', '; Value:', TypeError: Cannot read property 'textContent' of null
+TypeError: Cannot read property 'textContent' of null
+    at http://localhost:9877/src/app/auth/login/login.component.spec.ts?:53:54
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:388:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:288:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:387:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9877/node_modules/zone.js/dist/zone.js?:138:1)
+    at http://localhost:9877/node_modules/zone.js/dist/zone.js?:872:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:421:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:319:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:420:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.runTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:188:1), 'TypeError: Cannot read property 'textContent' of null
+    at http://localhost:9877/src/app/auth/login/login.component.spec.ts?:53:54
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:388:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:288:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9877/node_modules/zone.js/dist/zone.js?:387:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9877/node_modules/zone.js/dist/zone.js?:138:1)
+    at http://localhost:9877/node_modules/zone.js/dist/zone.js?:872:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:421:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9877/node_modules/zone.js/dist/zone-testing.js?:319:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:420:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.runTask (http://localhost:9877/node_modules/zone.js/dist/zone.js?:188:1)'
+,Chrome 68.0.3440 (Windows 10 0.0.0) WARN: '
+    It looks like you're using ngModel on the same form field as formControlName. 
+    Support for using the ngModel input property and ngModelChange event with 
+    reactive form directives has been deprecated in Angular v6 and will be removed 
+    in Angular v7.
+    
+    For more information on this, see our API docs here:
+    https://angular.io/api/forms/FormControlName#use-with-ngmodel
+    '
+,Chrome 68.0.3440 (Windows 10 0.0.0) LOG: true
+,Chrome 68.0.3440 (Windows 10 0.0.0) LOG: false
+,Chrome 68.0.3440 (Windows 10 0.0.0) WARN: 'Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?'
+,Chrome 68.0.3440 (Windows 10 0.0.0) ERROR: 'Unhandled Promise rejection:', 'Cannot match any routes. URL Segment: 'landing'', '; Zone:', 'ProxyZone', '; Task:', 'Promise.then', '; Value:', Error: Cannot match any routes. URL Segment: 'landing'
+Error: Cannot match any routes. URL Segment: 'landing'
+    at ApplyRedirects.push../node_modules/@angular/router/fesm5/router.js.ApplyRedirects.noMatchError (http://localhost:9877/node_modules/@angular/router/fesm5/router.js?:1384:1)
+    at CatchSubscriber.selector (http://localhost:9877/node_modules/@angular/router/fesm5/router.js?:1365:1)
+    at CatchSubscriber.push../node_modules/rxjs/_esm5/internal/operators/catchError.js.CatchSubscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/operators/catchError.js?:33:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at TapSubscriber.push../node_modules/rxjs/_esm5/internal/operators/tap.js.TapSubscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/operators/tap.js?:61:1), 'Error: Cannot match any routes. URL Segment: 'landing'
+    at ApplyRedirects.push../node_modules/@angular/router/fesm5/router.js.ApplyRedirects.noMatchError (http://localhost:9877/node_modules/@angular/router/fesm5/router.js?:1384:1)
+    at CatchSubscriber.selector (http://localhost:9877/node_modules/@angular/router/fesm5/router.js?:1365:1)
+    at CatchSubscriber.push../node_modules/rxjs/_esm5/internal/operators/catchError.js.CatchSubscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/operators/catchError.js?:33:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:80:1)
+    at MapSubscriber.push../node_modules/rxjs/_esm5/internal/Subscriber.js.Subscriber.error (http://localhost:9877/node_modules/rxjs/_esm5/internal/Subscriber.js?:60:1)
+    at TapSubscriber.push../node_modules/rxjs/_esm5/internal/operators/tap.js.TapSubscriber._error (http://localhost:9877/node_modules/rxjs/_esm5/internal/operators/tap.js?:61:1)'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

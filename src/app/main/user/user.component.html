@@ -1,0 +1,34 @@
+<div id="userContainer" class="userCard card col-12 mx-auto mb-3">
+  <div class="userInfo text-center">
+    <div class="userAvatar">
+      <!-- User is still undefined when the page is loading. How to solve this problem?  -->
+      <img src="{{user!=undefined?user.avatar:null}}" class="img-fluid avatarUser" alt="User's Avatar">
+    </div>
+    <div class="userName">
+      {{user!=undefined?user.displayName:null}}
+    </div>
+    <div class="headline">
+      {{user!=undefined?user.headline:null}}
+    </div>
+  </div>
+
+  <div class="headlineEditor col-12">
+    <form (ngSubmit)="onSubmit()" [formGroup]="headlineEditor" class="form-inline mt-2">
+      <div class="form-group col-12">
+        <input type="text" class="form-control mx-auto my-1 w-100" formControlName="headline" id="headline" name="headline" placeholder="New headline" required>
+      </div>
+      <div *ngIf="headline.invalid && headline.touched" class="col-12">
+        <small *ngIf="headline.hasError('required')" class="form-text text-danger">
+          This field is required.
+        </small>
+      </div>
+      <div class="mx-auto">
+        <button type="submit" class="btn btn-sm btn-primary my-1">Update</button>
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+
+

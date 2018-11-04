@@ -1,0 +1,77 @@
+<div class="col-lg-11 col-12 mx-auto">
+
+  <div class="row px-lg-2">
+    <div id="postNew" class="postCard card col-12 p-lg-2 mx-auto mb-3">
+      <form (ngSubmit)="onPostNewSubmit()" [formGroup]="newPostForm" class="form-inline mt-2">
+        <div class="form-group mx-auto my-2 col-12">
+          <textarea rows="6" class="form-control mx-auto col-12" formControlName="newPostText" id="newPostText" name="newPostText" placeholder="New Post Here..." required></textarea>
+          <div *ngIf="newPostText.invalid && newPostText.touched" class="ml-3">
+            <small *ngIf="newPostText.hasError('required')" class="form-text text-danger">
+              This field is required.
+            </small>
+          </div>
+        </div>
+        <div class="text-center col-12 mb-2">
+          <button type="submit" class="btn btn-sm btn-primary mx-2 mb-1">Post</button>
+          <button type="reset" class="btn btn-sm btn-primary mx-2 mb-1">Cancel</button>
+        </div>
+        <div class="text-center col-12 mb-3">
+          Add an image: <input type="file" class="mx-1 newPostImagePicker">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row px-lg-2">
+    <div id="postSearch" class="postCard card col-12 p-lg-2 mx-auto mb-3">
+      <form (ngSubmit)="onPostSearchSubmit()" [formGroup]="postSearchForm" class="form-inline mt-2">
+        <div class="form-group mx-auto my-2 col-12 ">
+          <div class="col-12">
+            <input type="text" [(ngModel)]="keyword" class="form-control" formControlName="postSearchInput" id="postSearchInput" name="postSearchInput" placeholder="Search any keywords">
+          </div>
+          <div *ngIf="postSearchInput.invalid && postSearchInput.touched" class="ml-4">
+              <small *ngIf="postSearchInput.hasError('required')" class="form-text text-danger">
+                This field is required.
+              </small>
+            </div>
+          <div class="col-12 mt-3 text-center">
+            <button type="submit" class="btn btn-sm btn-primary mx-2 mb-1">Search</button>
+            <button type="reset" (click)="onPostSearchReset()" class="btn btn-sm btn-primary mx-2 mb-1" >Return</button>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="keyword!=undefined&&keyword.length>0" class="text-center">
+        Searching for: <span id="searchKeyword">{{keyword}}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div *ngFor="let post of postsShow" class="px-lg-2 col-12 mx-large-0 mx-auto p-0 mb-3">
+      <div class="postCard card">
+        <img *ngIf="post.image !== ''" class="card-img-top postImage mx-auto m-3" src="{{post.image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title postCardAuthor">{{post.author}}</h5>
+          <h6 class="card-subtitle text-muted postCardTimestamp">{{post.time.toString().slice(4,21)}}</h6>
+          <div class="card-text my-3 postCardText">
+            {{post.text}}
+          </div>
+          <div class="text-center mt-auto">
+            <button class="btn btn-sm mx-2 btn-primary mb-1">Comment</button>
+            <button class="btn btn-sm mx-2 btn-primary mb-1">Edit</button>
+          </div>
+          <div class="card-text my-3 postCardText">
+            <hr>
+            <!-- <div class="text-center font-weight-bold">Comments</div> -->
+            <div *ngFor="let comment of post.comments">
+              <span class="font-weight-bold">{{comment.author}}:</span> {{comment.text}}
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

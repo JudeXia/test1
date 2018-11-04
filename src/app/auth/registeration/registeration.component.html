@@ -1,0 +1,145 @@
+<div class="card w-100 mx-auto landingCard">
+  <div class="card-body w-100 mx-auto">
+    <h5 class="card-title text-center landingCardTitle">Register</h5>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <!-- <label for="registerAccountName">Account Name</label> -->
+            <input type="text" class="form-control" formControlName="registerAccountName" id="registerAccountName" name="registerAccountName" placeholder="Account Name" required>
+            <div *ngIf="registerAccountName.invalid && registerAccountName.touched">
+              <small *ngIf="registerAccountName.hasError('required'); else registerAccountNameTag" class="form-text text-danger">
+                This field is required.
+              </small>
+              <ng-template #registerAccountNameTag>
+                <small *ngIf="registerAccountName.hasError('invalidAccountName')" class="form-text text-danger">
+                  Only letters and number allowed and must start with a letter
+                </small>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerDisplayName">Display Name</label>-->
+            <input type="text" class="form-control" formControlName="registerDisplayName" id="registerDisplayName" name="registerDisplayName" placeholder="Display Name">
+              <div *ngIf="registerDisplayName.invalid && registerDisplayName.touched">
+                <small *ngIf="registerDisplayName.hasError('required')" class="form-text text-danger">
+                  This field is required.
+                </small>
+              </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerEmail">Email</label>-->
+            <input type="email" class="form-control" formControlName="registerEmail" id="registerEmail" name="registerEmail" placeholder="Your Email" required>
+            <div *ngIf="registerEmail.invalid && registerEmail.touched">
+              <small *ngIf="registerEmail.hasError('required'); else registerEmailTag" class="form-text text-danger">
+                This field is required.
+              </small>
+              <ng-template #registerEmailTag>
+                <small *ngIf="registerEmail.hasError('pattern')" class="form-text text-danger">
+                  Wrong Format.
+                </small>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerPhone">Phone Number</label>-->
+            <input type="text" class="form-control" formControlName="registerPhone" id="registerPhone" name="registerPhone" placeholder="Phone (10 digits)" required>
+            <div *ngIf="registerPhone.invalid && registerPhone.touched">
+              <small *ngIf="registerPhone.hasError('required'); else registerPhoneTag" class="form-text text-danger">
+                This field is required.
+              </small>
+              <ng-template #registerPhoneTag>
+                <small *ngIf="registerPhone.hasError('pattern')" class="form-text text-danger">
+                  Wrong Format.
+                </small>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerBirthday">Date of Birth</label>-->
+            <input type="date" class="form-control" formControlName="registerBirthday" id="registerBirthday" name="registerBirthday" placeholder="MM/DD/YYYY" required>
+            <div *ngIf="registerBirthday.invalid && registerBirthday.touched">
+              <small *ngIf="registerBirthday.hasError('required'); else registerBirthdayTag" class="form-text text-danger">
+                This field is required.
+              </small>
+              <ng-template #registerBirthdayTag>
+                <small *ngIf="registerBirthday.hasError('invalidBirthday')" class="form-text text-danger">
+                  {{registerBirthday.errors.invalidBirthday.toString()}}
+                </small>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerZipcode">Zipcode</label>-->
+            <input type="text" class="form-control" formControlName="registerZipcode" id="registerZipcode" name="registerZipcode" placeholder="Zipcode" required>
+            <div *ngIf="registerZipcode.invalid && registerZipcode.touched">
+              <small *ngIf="registerZipcode.hasError('required'); else registerZipcodeTag" class="form-text text-danger">
+                This field is required.
+              </small>
+              <ng-template #registerZipcodeTag>
+                <small *ngIf="registerZipcode.hasError('pattern')" class="form-text text-danger">
+                  Wrong Format. 
+                </small>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row" formGroupName="registerPasswordGroup">
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerPassword1">Password</label>-->
+            <input type="password" class="form-control" formControlName="registerPassword1" id="registerPassword1" name="registerPassword1" placeholder="Password" required>
+            <div *ngIf="registerPassword1.invalid && registerPassword1.touched">
+              <small *ngIf="registerPassword1.hasError('required')" class="form-text text-danger">
+                This field is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <!--<label for="registerPassword2">Confirm Password</label>-->
+            <input type="password" class="form-control" formControlName="registerPassword2" id="registerPassword2" name="registerPassword2" placeholder="Confirm Password" required>
+            <div *ngIf="registerPassword2.invalid && registerPassword2.touched">
+              <small *ngIf="registerPassword2.hasError('required')" class="form-text text-danger">
+                This field is required.
+              </small>
+            </div>
+            <small *ngIf="registerPasswordGroup.hasError('registerPassword')" class="form-text text-danger">
+              Two passwords do not match!
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mr-3 w-25 registerBtn">Submit</button>
+        <button type="reset" class="btn btn-outline-primary w-25 ml-3 registerBtn">Clear </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<form>
+
+</form>

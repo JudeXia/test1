@@ -1,0 +1,41 @@
+<div class="card mx-auto landingCard">
+  <div class="card-body w-75 mx-auto">
+    <h5 class="card-title text-center landingCardTitle">Login</h5>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+
+      <div class="form-group">
+        <!-- <label for="username">Account Name</label> -->
+        <input type="text" class="form-control" formControlName="username" id="username" name="username" placeholder="Your Account Name" required>
+        <div *ngIf="username.invalid && username.touched">
+          <small *ngIf="username.hasError('required')" class="form-text text-danger">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="password">Password</label> -->
+        <input type="password" class="form-control" formControlName="password" id="password" name="password" placeholder="Your Password" required>
+        <div *ngIf="password.invalid && password.touched">
+          <small *ngIf="password.hasError('required')" class="form-text text-danger">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary w-50">Login</button>
+      </div>
+      <div class="text-center">
+        <div *ngIf="isLoggedIn&&showMessage" id="successMessage">
+          Successfully Logged In!
+        </div>
+        <div *ngIf="!isLoggedIn&&showMessage" id="failMessage">
+          Wrong Account Information!
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

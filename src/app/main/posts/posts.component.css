@@ -1,0 +1,33 @@
+.postCard {
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 10px;
+  }
+  
+  .postImage {
+    /*border: 1px solid black;*/
+    padding: 0;
+    border-radius: 10px;
+    object-fit: cover;
+    width: 200px !important;
+    height: 200px !important;
+  }
+  
+  .postCardAuthor {
+    font-size: 1.2em;
+  }
+  
+  .postCardTimestamp {
+    font-size: 1em;
+  }
+  
+  .postCardText {
+    font-size: 1em;
+  }
+
+  .btn {
+      width: 80px !important;
+  }
+
+  #postSearchInput {
+      width: 100%;
+  }

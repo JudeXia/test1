@@ -1,0 +1,167 @@
+<app-navigator></app-navigator>
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-12 col-lg-6">
+
+      <div id="profileAvatarContainer" class="card profileAvatarCard col-10 mx-auto mb-3">
+        <div class="col-12 text-center card-body">
+          <img src="{{user.avatar}}" class="img-fluid avatarProfile" alt="User's Avatar">
+          <input type="file" class="mx-auto mt-3 profileAvatarPicker">
+        </div>
+      </div>
+
+      <div id="currentInfoContainer" class="card currentInfoCard col-10 mx-auto mb-3">
+        <div class="col-12 card-body">
+          <h5 class="text-center card-title">Current Info</h5>
+          <div class="row my-2">
+            <div class="col-6 infoName">Account Name:</div>
+            <div class="col-6 infoVal">{{user.accountName}}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 infoName">Display Name:</div>
+            <div class="col-6 infoVal">{{user.displayName}}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 infoName">Email:</div>
+            <div class="col-6 infoVal">{{user.email}}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 infoName">Phone Number:</div>
+            <div class="col-6 infoVal">{{user.phoneNumber}}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 infoName">Birthday:</div>
+            <div class="col-6 infoVal">{{user.birthday}}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 infoName">Zipcode:</div>
+            <div class="col-6 infoVal">{{user.zipcode}}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-------------------------------------------------------------------->
+    <div class="col-sm-12 col-lg-6 d-flex align-items-center">
+      <div class="card mx-auto updateInfoCard w-100">
+        <div class="card-body w-100 mx-auto">
+          <h5 class="card-title text-center">Update Info</h5>
+          <form (ngSubmit)="onSubmit()" [formGroup]="updateForm">
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updateAccountName">Account Name</label> -->
+                  <input type="text" class="form-control" formControlName="updateAccountName" id="updateAccountName" name="updateAccountName" placeholder="Account Name">
+                    <div *ngIf="updateAccountName.invalid && updateAccountName.touched">
+                      <small *ngIf="updateAccountName.hasError('invalidAccountName')" class="form-text text-danger">
+                        Wrong Format.
+                      </small>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updateDisplayName">Display Name</label> -->
+                  <input type="text" class="form-control" formControlName="updateDisplayName" id="updateDisplayName" name="updateDisplayName" placeholder="Display Name">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updateEmail">Email</label> -->
+                  <input type="email" class="form-control" formControlName="updateEmail" id="updateEmail" name="updateEmail" placeholder="Email">
+                  <div *ngIf="updateEmail.invalid && updateEmail.touched">
+                    <small *ngIf="updateEmail.hasError('required'); else updateEmailTag" class="form-text text-danger">
+                      This field is required.
+                    </small>
+                    <ng-template #updateEmailTag>
+                      <small *ngIf="updateEmail.hasError('pattern')" class="form-text text-danger">
+                        Wrong Format.
+                      </small>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updatePhone">Phone Number</label> -->
+                  <input type="text" class="form-control" formControlName="updatePhone" id="updatePhone" name="updatePhone" placeholder="Phone">
+                  <div *ngIf="updatePhone.invalid && updatePhone.touched">
+                    <small *ngIf="updatePhone.hasError('required'); else updatePhoneTag" class="form-text text-danger">
+                      This field is required.
+                    </small>
+                    <ng-template #updatePhoneTag>
+                      <small *ngIf="updatePhone.hasError('pattern')" class="form-text text-danger">
+                        Wrong Format.
+                      </small>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updateBirthday">Date of Birth</label> -->
+                  <input type="date" value={{this.user.birthday}} class="form-control" formControlName="updateBirthday" id="updateBirthday" name="updateBirthday" placeholder="Birthday">
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updateZipcode">Zipcode</label> -->
+                  <input type="text" class="form-control" formControlName="updateZipcode" id="updateZipcode" name="updateZipcode" placeholder="Zipcode">
+                  <div *ngIf="updateZipcode.invalid && updateZipcode.touched">
+                    <small *ngIf="updateZipcode.hasError('required'); else updateZipcodeTag" class="form-text text-danger">
+                      This field is required.
+                    </small>
+                    <ng-template #updateZipcodeTag>
+                      <small *ngIf="updateZipcode.hasError('pattern')" class="form-text text-danger">
+                        Wrong Format.
+                      </small>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row" formGroupName="updatePasswordGroup">
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updatePassword1">Password</label> -->
+                  <input type="password" class="form-control" formControlName="updatePassword1" id="updatePassword1" name="updatePassword1" placeholder="Password">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <!-- <label for="updatePassword2">Confirm Password</label> -->
+                  <input type="password" class="form-control" formControlName="updatePassword2" id="updatePassword2" name="updatePassword2" placeholder="Confirm Password">
+                  <div *ngIf="updatePassword1.touched && updatePassword2.touched">
+                    <small *ngIf="updatePasswordGroup.hasError('updatePasswordRequired')" class="form-text text-danger">
+                      Two passwords are both required!
+                    </small>
+                    <small *ngIf="updatePasswordGroup.hasError('updatePassword')" class="form-text text-danger">
+                      Two passwords do not match!
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mr-3 w-25 updateBtn">Submit</button>
+              <button type="reset" class="btn btn-outline-primary w-25 ml-3 updateBtn">Clear </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

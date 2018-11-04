@@ -1,0 +1,17 @@
+<app-navigator></app-navigator>
+<div class="container col-lg-9 col-11">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 px-3 col-sm-8 col-10 mx-auto">
+      <app-user></app-user>
+      <app-following  (deleteEvent)="deleteFollowing()" (addEvent)="addFollowing()" [followings]="followings"></app-following>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-12 mx-auto">
+      <!--{{mainPosts.length}}}-->
+      <!--{{posts.length}}}-->
+       <app-posts [posts]="posts"></app-posts>
+    </div>
+  </div>
+</div>
+
+
+<!--<button class="btn btn-primary" (click)="toProfile()">Profile</button>-->
