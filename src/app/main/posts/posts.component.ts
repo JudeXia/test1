@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnChanges} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter, OnChanges} from '@angular/core';
 import { Post } from '../post';
 import { PostsService} from '../posts.service';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,34 +12,31 @@ import {Following} from '../following';
 })
 export class PostsComponent implements OnInit, OnChanges {
 
-  @Input() posts: Post[];
-
-  postsShow: Post[];
-  currentPostID: number;
-  user: Profile;
+  @Input() posts: any[];
+  @Output() addEvent = new EventEmitter<any>();
+  postsShow: any[];
   newPostForm: FormGroup;
   postSearchForm: FormGroup;
   keyword: string;
   constructor(
-
+    private postsService: PostsService
   ) { }
 
 
   onPostNewSubmit() {
     this.newPostForm.get('newPostText').markAsTouched();
     if (!this.newPostForm.invalid) {
-      const newPost = this.newPostForm.get('newPostText').value;
-      const time = new Date();
-      this.posts.unshift(new Post(
-        ++this.currentPostID,
-        this.user.displayName,
-        time,
-        newPost,
-        '',
-        null
-      ));
+      const newPost = {
+        text: this.newPostForm.get('newPostText').value
+      }
       this.newPostForm.get('newPostText').setValue('');
       this.newPostForm.get('newPostText').markAsUntouched();
+
+      this.postsService.postPosts(newPost)
+      .subscribe(res => {
+        this.addEvent.emit();
+        // console.log(res);
+      });
     }
   }
 
@@ -47,14 +44,14 @@ export class PostsComponent implements OnInit, OnChanges {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   }
 
-  onPostSearchSubmit(){
+  onPostSearchSubmit() {
     this.postSearchForm.get('postSearchInput').markAsTouched();
     if (this.postSearchForm.valid) {
       this.postsShow = [];
       // this.keyword = this.postSearchForm.get('postSearchInput').value;
       for (const post of this.posts) {
         const regex = new RegExp(this.escapeRegex(this.keyword), 'gi');
-        if(post.text.search(regex) !== -1 || post.author.search(regex) !== -1) {
+        if (post.text.search(regex) !== -1 || post.author.displayName.search(regex) !== -1) {
           this.postsShow.push(post);
         }
       }
@@ -69,12 +66,10 @@ export class PostsComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (this.posts !== undefined && this.posts.length > 0) {
       this.postsShow = this.posts;
-      this.currentPostID = this.posts[0].postId;
     }
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.newPostForm = new FormGroup({
       newPostText: new FormControl(null, [
         Validators.required,

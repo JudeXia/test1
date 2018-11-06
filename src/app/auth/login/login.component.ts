@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.router.navigate(['/main']);
             }, 500);
-        } else  {
+        } else {
           this.isLoggedIn = false;
         }
       });

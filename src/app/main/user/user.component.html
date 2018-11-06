@@ -2,13 +2,13 @@
   <div class="userInfo text-center">
     <div class="userAvatar">
       <!-- User is still undefined when the page is loading. How to solve this problem?  -->
-      <img src="{{user!=undefined?user.avatar:null}}" class="img-fluid avatarUser" alt="User's Avatar">
+      <img src="{{profile.avatar}}" class="img-fluid avatarUser" alt="User's Avatar">
     </div>
     <div class="userName">
-      {{user!=undefined?user.displayName:null}}
+      {{profile.displayName}}
     </div>
     <div class="headline">
-      {{user!=undefined?user.headline:null}}
+      {{profile.headline}}
     </div>
   </div>
 

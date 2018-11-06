@@ -18,7 +18,6 @@ export class NavigatorComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
-    localStorage.clear();
     this.router.navigate(['landing']);
   }
 

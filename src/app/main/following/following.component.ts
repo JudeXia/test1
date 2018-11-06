@@ -12,78 +12,31 @@ import { UserService } from '../../user.service';
 })
 export class FollowingComponent implements OnInit {
 
-  user: Profile;
   @Input() followings: Following[];
   @Output() deleteEvent = new EventEmitter<any>();
   @Output() addEvent = new EventEmitter<any>();
   addFollowingForm: FormGroup;
-  alreadyExist = false;
-  userNotFound = false;
 
   constructor(
     private followingService: FollowingService,
     private userService: UserService
   ) { }
 
-  // onSubmit() {
-  //   this.addFollowingForm.get('newFollowing').markAsTouched();
-  //   if (!this.addFollowingForm.invalid) {
-  //     const newFollowingName = this.addFollowingForm.get('newFollowing').value;
-  //     this.alreadyExist = false;
-  //     this.userNotFound = false;
-  //     let flag = true; // temp flag for userNotFound
-  //     if (newFollowingName === this.user.displayName) {
-  //       alert('User name invalid! ');
-  //       return;
-  //     }
-  //     for (const f of this.followings) {
-  //       if (newFollowingName === f.displayName) {
-  //         this.alreadyExist = true;
-  //         alert('You have already followed this user!');
-  //         return;
-  //       }
-  //     }
-  //     const _this = this;
-  //     this.userService.getUserProfile()
-  //       .subscribe( {
-  //         next (result: Profile[]) {
-  //           result.forEach(function (re) {
-  //             if (re['displayName'] === newFollowingName) {
-  //               _this.followings.push(new Following(
-  //                 re['displayName'],
-  //                 re['avatar'],
-  //                 re['displayName']
-  //               ));
-  //               flag = false;
-  //               _this.addFollowingForm.get('newFollowing').setValue('');
-  //               _this.addFollowingForm.get('newFollowing').markAsUntouched();
-  //             }
-  //           });
-  //           _this.userNotFound = flag;
-  //           if (flag) {
-  //             alert('User not found!');
-  //           }
-  //         },
-  //         complete() {
-  //           _this.addEvent.emit();
-  //         }
-  //       });
-  //   }
-  // }
-
-  removeFollowing(name: string) {
-    for (let i = 0; i < this.followings.length; i++) {
-      if (this.followings[i].displayName === name) {
-        this.followings.splice(i, 1);
-      }
-    }
-    this.deleteEvent.emit();
+  removeFollowing(following) {
+    // console.log(this.followings);
+    // console.log(following);
+    this.followingService.deleteFollowing(following.id)
+    .subscribe(res => {
+      // console.log(res);
+      this.deleteEvent.emit();
+    });
   }
 
+  onSubmit() {
+
+  }
 
   ngOnInit() {
-    // console.log(this.followings)
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.addFollowingForm = new FormGroup({
       newFollowing: new FormControl(null, [
         Validators.required,

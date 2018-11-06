@@ -62,7 +62,7 @@ export class ProfileService {
   putPhone(phone): Observable<any> {
     return this.http.put<any>(this.URL + '/phone', {phone: phone}, this.httpOptions)
       .pipe(map(res => {
-        // console.log(res); 
+        // console.log(res);
         return res;
       }));
   }
@@ -77,11 +77,43 @@ export class ProfileService {
   }
 
   // GET and PUT Avatar
-  getAvatar(): Observable<any> {
-    return this.http.get<any>(this.URL + '/avatars', this.httpOptions)
+  getAvatar(ids = null): Observable<any> {
+    let route = this.URL + '/avatars/';
+    if (ids != null) {
+      ids.forEach(id => {
+        route += id + ',';
+      });
+      route = route.substring(0, route.length - 1);
+    }
+    return this.http.get<any>(route, this.httpOptions)
       .pipe(map(res => {
-        // console.log(res.avatars);
-        return res.avatars[0].avatar;
+        // console.log(res.phone);
+        return res.avatars;
+      }));
+  }
+
+  // GET and PUT Headline
+  getHeadlines(ids = null): Observable<any> {
+    let route = this.URL + '/headlines/';
+    if (ids != null) {
+      ids.forEach(id => {
+        route += id + ',';
+      });
+      route = route.substring(0, route.length - 1);
+    }
+    // console.log(route);
+    return this.http.get<any>(route, this.httpOptions)
+      .pipe(map(res => {
+        // console.log(res.phone);
+        return res.headlines;
+      }));
+  }
+
+  putHeadline(headline): Observable<any> {
+    return this.http.put<any>(this.URL + '/headline', headline, this.httpOptions)
+      .pipe(map(res => {
+        // console.log(res);
+        return res;
       }));
   }
 }

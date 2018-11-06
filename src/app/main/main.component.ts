@@ -3,6 +3,8 @@ import { Following } from './following';
 import { Post } from './post';
 import { FollowingService} from './following.service';
 import { PostsService } from './posts.service';
+import { ProfileService } from '../profile.service';
+import { UserService } from '../user.service';
 import { Profile } from '../profile';
 import { Comment } from './comment';
 
@@ -16,91 +18,92 @@ export class MainComponent implements OnInit {
 
   constructor(
     private followingService: FollowingService,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private profileService: ProfileService,
+    private userService: UserService
   ) { }
   mainUser: Profile;
   mainFollowings: Following[] = [];
   followings: Following[];
-  mainPosts: Post[] = [];
-  posts: Post[];
+  mainPosts: any[] = [];
+  posts: any[] = [];
 
   getFollowings() {
-    this.followingService.getFollowings()
-      .subscribe( (re: Object[]) => {
-        for (const r of re) {
-          if (r['userId'] === this.mainUser.userId) {
-            // console.log(r['followings']);
-            this.mainFollowings = r['followings'];
-            const userHeadline = JSON.parse(localStorage.getItem('userHeadline'));
-            if (userHeadline) {
-              for (let f of this.mainFollowings) {
-                for (const u of userHeadline) {
-                  if (f.displayName === u.user) {
-                    f.headline = u.headline;
+    this.followingService.getFollowing()
+      .subscribe( (res) => {
+        // console.log(res);
+        const followingIds = res.following;
+        if(followingIds.length > 0) {
+          this.profileService.getHeadlines(followingIds)
+          .subscribe((headlines) => {
+            // console.log(headlines);
+            this.profileService.getAvatar(followingIds)
+            .subscribe(avatars => {
+              // console.log(avatars);
+              let newFollowing = new Following();
+              for (let i = 0; i < headlines.length; i++) {
+                for (let j = 0; j < avatars.length; j++) {
+                  if (headlines[i].userid === avatars[j].userid) {
+                    newFollowing = new Following(
+                      avatars[j].displayName,
+                      avatars[j].avatar,
+                      headlines[i].headline,
+                      headlines[i].userid
+                    );
                   }
                 }
+                this.mainFollowings.push(newFollowing);
               }
-            }
-            this.followings = this.mainFollowings;
-          }
+              // console.log(this.mainFollowings);
+              this.followings = this.mainFollowings;
+            });
+          });
+        } else {
+          this.followings = [];
         }
       });
   }
 
   getPosts() {
-    const _this = this;   // this would be changed to observerble inside the handler
-    this.postsService.getPosts()
-      .subscribe( (re: Post[]) => {
-        for (const r of re) {
-          let comments: Comment[] = [];
-          for(const c of r['comments']) {
-            comments.push(new Comment(c['author'], c['text']));
-          }
-          const time = new Date(r['timestamp']);
-          _this.mainPosts.push(new Post(r['postId'], r['author'], time, r['text'], r['image'], comments));
-        }
-        // let deleteCount = 0;
-        _this.pickPosts();
-        _this.mainPosts.sort((a, b) => b.time.getTime() - a.time.getTime());
-        // console.log(this.mainPosts);
-        _this.posts = _this.mainPosts;
+    this.followingService.getFollowing()
+      .subscribe( (res) => {
+        // console.log(res);
+        this.postsService.getPosts()
+        .subscribe((posts) => {
+          // console.log(posts);
+          posts.sort((post1, post2) => {
+            const d1 = new Date(post1.createdAt)
+            const d2 = new Date(post2.createdAt)
+            return d2.getTime() - d1.getTime();
+          });
+          posts.forEach((post) => {
+            const d = new Date(post.createdAt);
+            const array = d.toString().split(' ');
+            post['date'] = array[1] + ' ' + array[2] + ' ' + array[3] + ' ' + array[4];
+          })
+          this.mainPosts = posts;
+          this.posts = posts;
+        });
       });
   }
 
-  pickPosts() {
-    if (this.mainPosts && this.followings) {
-      for (let i = 0; i < this.mainPosts.length; i++) {
-
-        const author = this.mainPosts[i].author;
-        let flag = false;
-        for (const following of this.followings) {
-          if (author === following.displayName) {
-            flag = true;
-          }
-        }
-        if (author === this.mainUser.displayName) {
-          flag = true;
-        }
-        if (flag === false) {
-          this.mainPosts.splice(i,1);
-          i--;
-        }
-      }
-    }
-  }
-
   deleteFollowing() {
-    this.pickPosts();
-    this.posts = this.mainPosts;
+    this.mainFollowings = [];
+    this.getFollowings();
+    this.getPosts();
   }
 
   addFollowing() {
-    this.mainPosts = [];
+    this.mainFollowings = [];
+    this.getFollowings();
+    this.getPosts();
+  }
+
+  addPost() {
     this.getPosts();
   }
 
   ngOnInit() {
-    this.mainUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getFollowings();
     this.getPosts();
   }

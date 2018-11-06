@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
       });
     this.profileService.getAvatar()
     .subscribe((res) => {
-      this.profile.avatar = res;
+      this.profile.avatar = res[0].avatar;
     });
   }
 
