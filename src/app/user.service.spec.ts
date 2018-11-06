@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import {MainComponent} from './main.component';
-import {NavigatorComponent} from '../navigator/navigator.component';
-import {UserComponent} from './user/user.component';
-import {FollowingComponent} from './following/following.component';
-import {PostsComponent} from './posts/posts.component';
+import {MainComponent} from './main/main.component';
+import {NavigatorComponent} from './navigator/navigator.component';
+import {UserComponent} from './main/user/user.component';
+import {FollowingComponent} from './main/following/following.component';
+import {PostsComponent} from './main/posts/posts.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';

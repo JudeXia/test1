@@ -6,14 +6,14 @@
       <div class="form-row">
         <div class="col">
           <div class="form-group">
-            <!-- <label for="registerAccountName">Account Name</label> -->
-            <input type="text" class="form-control" formControlName="registerAccountName" id="registerAccountName" name="registerAccountName" placeholder="Account Name" required>
-            <div *ngIf="registerAccountName.invalid && registerAccountName.touched">
-              <small *ngIf="registerAccountName.hasError('required'); else registerAccountNameTag" class="form-text text-danger">
+            <!-- <label for="registerUsername">Account Name</label> -->
+            <input type="text" class="form-control" formControlName="registerUsername" id="registerUsername" name="registerUsername" placeholder="Account Name" required>
+            <div *ngIf="registerUsername.invalid && registerUsername.touched">
+              <small *ngIf="registerUsername.hasError('required'); else registerUsernameTag" class="form-text text-danger">
                 This field is required.
               </small>
-              <ng-template #registerAccountNameTag>
-                <small *ngIf="registerAccountName.hasError('invalidAccountName')" class="form-text text-danger">
+              <ng-template #registerUsernameTag>
+                <small *ngIf="registerUsername.hasError('invalidAccountName')" class="form-text text-danger">
                   Only letters and number allowed and must start with a letter
                 </small>
               </ng-template>
@@ -22,10 +22,10 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerDisplayName">Display Name</label>-->
-            <input type="text" class="form-control" formControlName="registerDisplayName" id="registerDisplayName" name="registerDisplayName" placeholder="Display Name">
-              <div *ngIf="registerDisplayName.invalid && registerDisplayName.touched">
-                <small *ngIf="registerDisplayName.hasError('required')" class="form-text text-danger">
+            <!--<label for="displayName">Display Name</label>-->
+            <input type="text" class="form-control" formControlName="displayName" id="displayName" name="displayName" placeholder="Display Name">
+              <div *ngIf="displayName.invalid && displayName.touched">
+                <small *ngIf="displayName.hasError('required')" class="form-text text-danger">
                   This field is required.
                 </small>
               </div>
@@ -36,14 +36,14 @@
       <div class="form-row">
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerEmail">Email</label>-->
-            <input type="email" class="form-control" formControlName="registerEmail" id="registerEmail" name="registerEmail" placeholder="Your Email" required>
-            <div *ngIf="registerEmail.invalid && registerEmail.touched">
-              <small *ngIf="registerEmail.hasError('required'); else registerEmailTag" class="form-text text-danger">
+            <!--<label for="email">Email</label>-->
+            <input type="email" class="form-control" formControlName="email" id="email" name="email" placeholder="Your Email" required>
+            <div *ngIf="email.invalid && email.touched">
+              <small *ngIf="email.hasError('required'); else emailTag" class="form-text text-danger">
                 This field is required.
               </small>
-              <ng-template #registerEmailTag>
-                <small *ngIf="registerEmail.hasError('pattern')" class="form-text text-danger">
+              <ng-template #emailTag>
+                <small *ngIf="email.hasError('pattern')" class="form-text text-danger">
                   Wrong Format.
                 </small>
               </ng-template>
@@ -52,14 +52,14 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerPhone">Phone Number</label>-->
-            <input type="text" class="form-control" formControlName="registerPhone" id="registerPhone" name="registerPhone" placeholder="Phone (10 digits)" required>
-            <div *ngIf="registerPhone.invalid && registerPhone.touched">
-              <small *ngIf="registerPhone.hasError('required'); else registerPhoneTag" class="form-text text-danger">
+            <!--<label for="phone">Phone Number</label>-->
+            <input type="text" class="form-control" formControlName="phone" id="phone" name="phone" placeholder="Phone (10 digits)" required>
+            <div *ngIf="phone.invalid && phone.touched">
+              <small *ngIf="phone.hasError('required'); else phoneTag" class="form-text text-danger">
                 This field is required.
               </small>
-              <ng-template #registerPhoneTag>
-                <small *ngIf="registerPhone.hasError('pattern')" class="form-text text-danger">
+              <ng-template #phoneTag>
+                <small *ngIf="phone.hasError('pattern')" class="form-text text-danger">
                   Wrong Format.
                 </small>
               </ng-template>
@@ -71,15 +71,15 @@
       <div class="form-row">
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerBirthday">Date of Birth</label>-->
-            <input type="date" class="form-control" formControlName="registerBirthday" id="registerBirthday" name="registerBirthday" placeholder="MM/DD/YYYY" required>
-            <div *ngIf="registerBirthday.invalid && registerBirthday.touched">
-              <small *ngIf="registerBirthday.hasError('required'); else registerBirthdayTag" class="form-text text-danger">
+            <!--<label for="birthday">Date of Birth</label>-->
+            <input type="date" class="form-control" formControlName="birthday" id="birthday" name="birthday" placeholder="MM/DD/YYYY" required>
+            <div *ngIf="birthday.invalid && birthday.touched">
+              <small *ngIf="birthday.hasError('required'); else birthdayTag" class="form-text text-danger">
                 This field is required.
               </small>
-              <ng-template #registerBirthdayTag>
-                <small *ngIf="registerBirthday.hasError('invalidBirthday')" class="form-text text-danger">
-                  {{registerBirthday.errors.invalidBirthday.toString()}}
+              <ng-template #birthdayTag>
+                <small *ngIf="birthday.hasError('invalidBirthday')" class="form-text text-danger">
+                  {{birthday.errors.invalidBirthday.toString()}}
                 </small>
               </ng-template>
             </div>
@@ -87,14 +87,14 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerZipcode">Zipcode</label>-->
-            <input type="text" class="form-control" formControlName="registerZipcode" id="registerZipcode" name="registerZipcode" placeholder="Zipcode" required>
-            <div *ngIf="registerZipcode.invalid && registerZipcode.touched">
-              <small *ngIf="registerZipcode.hasError('required'); else registerZipcodeTag" class="form-text text-danger">
+            <!--<label for="zipcode">Zipcode</label>-->
+            <input type="text" class="form-control" formControlName="zipcode" id="zipcode" name="zipcode" placeholder="Zipcode" required>
+            <div *ngIf="zipcode.invalid && zipcode.touched">
+              <small *ngIf="zipcode.hasError('required'); else zipcodeTag" class="form-text text-danger">
                 This field is required.
               </small>
-              <ng-template #registerZipcodeTag>
-                <small *ngIf="registerZipcode.hasError('pattern')" class="form-text text-danger">
+              <ng-template #zipcodeTag>
+                <small *ngIf="zipcode.hasError('pattern')" class="form-text text-danger">
                   Wrong Format. 
                 </small>
               </ng-template>
@@ -103,13 +103,13 @@
         </div>
       </div>
 
-      <div class="form-row" formGroupName="registerPasswordGroup">
+      <div class="form-row" formGroupName="passwordGroup">
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerPassword1">Password</label>-->
-            <input type="password" class="form-control" formControlName="registerPassword1" id="registerPassword1" name="registerPassword1" placeholder="Password" required>
-            <div *ngIf="registerPassword1.invalid && registerPassword1.touched">
-              <small *ngIf="registerPassword1.hasError('required')" class="form-text text-danger">
+            <!--<label for="registerPassword">registerPassword</label>-->
+            <input type="password" class="form-control" formControlName="registerPassword" id="registerPassword" name="registerPassword" placeholder="Password" required>
+            <div *ngIf="registerPassword.invalid && registerPassword.touched">
+              <small *ngIf="registerPassword.hasError('required')" class="form-text text-danger">
                 This field is required.
               </small>
             </div>
@@ -117,14 +117,14 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <!--<label for="registerPassword2">Confirm Password</label>-->
-            <input type="password" class="form-control" formControlName="registerPassword2" id="registerPassword2" name="registerPassword2" placeholder="Confirm Password" required>
-            <div *ngIf="registerPassword2.invalid && registerPassword2.touched">
-              <small *ngIf="registerPassword2.hasError('required')" class="form-text text-danger">
+            <!--<label for="confirm">Confirm Password</label>-->
+            <input type="password" class="form-control" formControlName="confirm" id="confirm" name="confirm" placeholder="Confirm Password" required>
+            <div *ngIf="confirm.invalid && confirm.touched">
+              <small *ngIf="confirm.hasError('required')" class="form-text text-danger">
                 This field is required.
               </small>
             </div>
-            <small *ngIf="registerPasswordGroup.hasError('registerPassword')" class="form-text text-danger">
+            <small *ngIf="passwordGroup.hasError('registerPassword')" class="form-text text-danger">
               Two passwords do not match!
             </small>
           </div>

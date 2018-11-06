@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Profile } from '../../profile';
-import { UserService } from '../../main/user.service';
+import { UserService } from '../../user.service';
 
 
 @Component({

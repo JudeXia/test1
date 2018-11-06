@@ -62,8 +62,8 @@ export function birthdayValidator(): ValidatorFn {
 
 export function registerPasswordValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const password2 = control.get('registerPassword2').value;
-    const password1 = control.get('registerPassword1').value;
+    const password2 = control.get('confirm').value;
+    const password1 = control.get('registerPassword').value;
 
     if ( password2 !== password1 ) {
       return {'registerPassword': 'Two passwords do not match! ' };

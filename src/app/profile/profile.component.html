@@ -6,7 +6,7 @@
 
       <div id="profileAvatarContainer" class="card profileAvatarCard col-10 mx-auto mb-3">
         <div class="col-12 text-center card-body">
-          <img src="{{user.avatar}}" class="img-fluid avatarProfile" alt="User's Avatar">
+          <img src="{{profile.avatar}}" class="img-fluid avatarProfile" alt="profile's Avatar">
           <input type="file" class="mx-auto mt-3 profileAvatarPicker">
         </div>
       </div>
@@ -16,27 +16,27 @@
           <h5 class="text-center card-title">Current Info</h5>
           <div class="row my-2">
             <div class="col-6 infoName">Account Name:</div>
-            <div class="col-6 infoVal">{{user.accountName}}</div>
+            <div class="col-6 infoVal">{{profile.username}}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 infoName">Display Name:</div>
-            <div class="col-6 infoVal">{{user.displayName}}</div>
+            <div class="col-6 infoVal">{{profile.displayName}}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 infoName">Email:</div>
-            <div class="col-6 infoVal">{{user.email}}</div>
+            <div class="col-6 infoVal">{{profile.email}}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 infoName">Phone Number:</div>
-            <div class="col-6 infoVal">{{user.phoneNumber}}</div>
+            <div class="col-6 infoVal">{{profile.phone}}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 infoName">Birthday:</div>
-            <div class="col-6 infoVal">{{user.birthday}}</div>
+            <div class="col-6 infoVal">{{profile.birthday}}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 infoName">Zipcode:</div>
-            <div class="col-6 infoVal">{{user.zipcode}}</div>
+            <div class="col-6 infoVal">{{profile.zipcode}}</div>
           </div>
         </div>
       </div>
@@ -51,10 +51,10 @@
             <div class="form-row">
               <div class="col">
                 <div class="form-group">
-                  <!-- <label for="updateAccountName">Account Name</label> -->
-                  <input type="text" class="form-control" formControlName="updateAccountName" id="updateAccountName" name="updateAccountName" placeholder="Account Name">
-                    <div *ngIf="updateAccountName.invalid && updateAccountName.touched">
-                      <small *ngIf="updateAccountName.hasError('invalidAccountName')" class="form-text text-danger">
+                  <!-- <label for="updateUsername">Account Name</label> -->
+                  <input type="text" class="form-control" formControlName="updateUsername" id="updateUsername" name="updateUsername" placeholder="Account Name">
+                    <div *ngIf="updateUsername.invalid && updateUsername.touched">
+                      <small *ngIf="updateUsername.hasError('invalidAccountName')" class="form-text text-danger">
                         Wrong Format.
                       </small>
                     </div>
@@ -107,7 +107,7 @@
               <div class="col">
                 <div class="form-group">
                   <!-- <label for="updateBirthday">Date of Birth</label> -->
-                  <input type="date" value={{this.user.birthday}} class="form-control" formControlName="updateBirthday" id="updateBirthday" name="updateBirthday" placeholder="Birthday">
+                  <input type="date" value={{this.profile.birthday}} class="form-control" formControlName="updateBirthday" id="updateBirthday" name="updateBirthday" placeholder="Birthday">
                 </div>
               </div>
 

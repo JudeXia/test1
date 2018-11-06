@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { accountNameValidator, birthdayValidator, registerPasswordValidator } from '../../form-validator.directive';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-registeration',
@@ -13,15 +14,30 @@ export class RegisterationComponent implements OnInit {
   registerForm: FormGroup;
   constructor(
     private router: Router,
+    private userService: UserService
   ) { }
 
   onSubmit() {
     this.markFormTouched(this.registerForm);
-    if (!this.registerForm.invalid) {
-      alert('Successfully Registered!');
+    if (this.registerForm.valid) {
+        const birthday = this.registerForm.get('birthday').value.split('-');
+        const d = new Date(birthday[0], birthday[1] - 1, birthday[2]);
+        const userProfile = {
+        username: this.registerForm.get('registerUsername').value,
+        displayName: this.registerForm.get('displayName').value,
+        email: this.registerForm.get('email').value,
+        phone: this.registerForm.get('phone').value,
+        birthday: d.getTime().toString(),
+        zipcode: this.registerForm.get('zipcode').value,
+        password: this.registerForm.get('passwordGroup').get('registerPassword').value,
+        confirm: this.registerForm.get('passwordGroup').get('confirm').value
+      };
+      return this.userService.register(userProfile)
+        .subscribe((isRegistered: boolean) => {
+          alert('Successfully Registered!');
+          console.log(isRegistered);
+      });
     }
-    // // // timestamp
-    // // document.getElementById('timestamp').value = d.getTime();
   }
 
   private markFormTouched(formGroup: FormGroup) {
@@ -35,35 +51,35 @@ export class RegisterationComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      'registerAccountName': new FormControl(null, [
+      'registerUsername': new FormControl(null, [
         Validators.required,
         accountNameValidator(),
       ]),
-      'registerDisplayName': new FormControl(null, [
+      'displayName': new FormControl(null, [
         Validators.required
       ]),
-      'registerEmail': new FormControl(null, [
+      'email': new FormControl(null, [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$'),
       ]),
-      'registerPhone': new FormControl(null, [
+      'phone': new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{10}$'),
       ]),
-      'registerZipcode': new FormControl(null, [
+      'zipcode': new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
-      'registerBirthday': new FormControl(null, [
+      'birthday': new FormControl(null, [
         Validators.required,
         birthdayValidator(),
       ]),
 
-      'registerPasswordGroup': new FormGroup({
-        'registerPassword1': new FormControl(null, [
+      'passwordGroup': new FormGroup({
+        'registerPassword': new FormControl(null, [
           Validators.required,
         ]),
-        'registerPassword2': new FormControl(null, [
+        'confirm': new FormControl(null, [
           Validators.required,
         ])
       }, [
@@ -73,14 +89,14 @@ export class RegisterationComponent implements OnInit {
 
   }
 
-  get registerAccountName() { return this.registerForm.get('registerAccountName'); }
-  get registerDisplayName() { return this.registerForm.get('registerDisplayName'); }
-  get registerEmail() { return this.registerForm.get('registerEmail'); }
-  get registerPhone() { return this.registerForm.get('registerPhone'); }
-  get registerBirthday() { return this.registerForm.get('registerBirthday'); }
-  get registerZipcode() { return this.registerForm.get('registerZipcode'); }
-  get registerPasswordGroup() { return this.registerForm.get('registerPasswordGroup'); }
-  get registerPassword1() { return this.registerForm.get('registerPasswordGroup').get('registerPassword1'); }
-  get registerPassword2() { return this.registerForm.get('registerPasswordGroup').get('registerPassword2'); }
+  get registerUsername() { return this.registerForm.get('registerUsername'); }
+  get displayName() { return this.registerForm.get('displayName'); }
+  get email() { return this.registerForm.get('email'); }
+  get phone() { return this.registerForm.get('phone'); }
+  get birthday() { return this.registerForm.get('birthday'); }
+  get zipcode() { return this.registerForm.get('zipcode'); }
+  get passwordGroup() { return this.registerForm.get('passwordGroup'); }
+  get registerPassword() { return this.registerForm.get('passwordGroup').get('registerPassword'); }
+  get confirm() { return this.registerForm.get('passwordGroup').get('confirm'); }
 
 }

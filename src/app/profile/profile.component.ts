@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from '../profile';
-import { UserService } from '../main/user.service';
+import { ProfileService } from '../profile.service';
+import { UserService } from '../user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { accountNameValidator, updatePasswordValidator } from '../form-validator.directive';
+
 
 @Component({
   selector: 'app-profile',
@@ -11,53 +13,97 @@ import { accountNameValidator, updatePasswordValidator } from '../form-validator
 })
 export class ProfileComponent implements OnInit {
 
-  user: Profile;
+  profile: Profile;
   updateForm: FormGroup;
-  formGroupArray = [
-    {
-      userFieldName: 'accountName',
-      formControlName: 'updateAccountName',
-    },
-    {
-      userFieldName: 'displayName',
-      formControlName: 'updateDisplayName',
-    },
-    {
-      userFieldName: 'email',
-      formControlName: 'updateEmail',
-    }, 
-    {
-      userFieldName: 'phoneNumber',
-      formControlName: 'updatePhone',
-    }, 
-    {
-      userFieldName: 'zipcode',
-      formControlName: 'updateZipcode',
-    }
-  ]
+
   constructor(
+    private profileService: ProfileService,
     private userService: UserService,
   ) { }
+
+  pad(n, len) {
+    const l = Math.floor(len);
+    const sn = '' + n;
+    const snl = sn.length;
+    if (snl >= l) {
+      return sn;
+    }
+    return '0'.repeat(l - snl) + sn;
+}
+
+  getProfile() {
+    this.profileService.getEmail()
+      .subscribe((res) => {
+        this.profile.email = res.email;
+        this.profile.username = res.username;
+        this.profile.displayName = res.displayName;
+      });
+    this.profileService.getZipcode()
+      .subscribe((res) => {
+        this.profile.zipcode = res;
+      });
+    this.profileService.getDOB()
+      .subscribe((res) => {
+        const d = new Date(parseInt(res, 10));
+        const birthday = this.pad(d.getFullYear(), 4) + '-' + this.pad((d.getMonth() + 1), 2) + '-' + this.pad(d.getDate(), 2);
+        this.profile.birthday = birthday;
+      });
+    this.profileService.getPhone()
+      .subscribe((res) => {
+        this.profile.phone = res;
+      });
+    this.profileService.getAvatar()
+    .subscribe((res) => {
+      this.profile.avatar = res;
+    });
+  }
 
   onSubmit() {
     this.markFormTouched(this.updateForm);
     if (!this.updateForm.invalid) {
-      let _this = this;
 
-      // update common field
-      this.formGroupArray.forEach(function(name){
-        if (_this.updateForm.get(name.formControlName).value !== null && _this.updateForm.get(name.formControlName).value !== '') {
-          _this.user[name.userFieldName] = _this.updateForm.get(name.formControlName).value;
-          _this.updateForm.get(name.formControlName).setValue( null);
-        }
-      })
-
-      // update password
-      if (_this.updateForm.get('updatePasswordGroup').get('updatePassword1').value !== null) {
-        _this.user.password = _this.updateForm.get('updatePasswordGroup').get('updatePassword1').value;
-        _this.updateForm.get('updatePasswordGroup').get('updatePassword1').setValue( null);
-        _this.updateForm.get('updatePasswordGroup').get('updatePassword2').setValue( null);
+      // update field
+      let formControl = this.updateForm.get('updateEmail');
+      if (formControl.value !== null && formControl.value !== '') {
+        // console.log('updateEmail');
+        this.profileService.putEmail(formControl.value)
+        .subscribe((res) => {
+          this.profile['email'] = res.email;
+        });
+        formControl.setValue(null);
       }
+
+      formControl = this.updateForm.get('updateZipcode');
+      if (formControl.value !== null && formControl.value !== '') {
+        // console.log('updateZipcode');
+        this.profileService.putZipcode(formControl.value)
+        .subscribe((res) => {
+          this.profile['zipcode'] = res.zipcode;
+        });
+        formControl.setValue(null);
+      }
+
+      formControl = this.updateForm.get('updatePhone');
+      if (formControl.value !== null && formControl.value !== '') {
+        // console.log('updatePhone');
+        this.profileService.putPhone(formControl.value)
+        .subscribe((res) => {
+          this.profile['phone'] = res.phone;
+        });
+        formControl.setValue(null);
+      }
+    }
+
+    const formControl1 = this.updateForm.get('updatePasswordGroup').get('updatePassword1');
+    const formControl2 = this.updateForm.get('updatePasswordGroup').get('updatePassword2');
+    const formGroup = this.updateForm.get('updatePasswordGroup');
+    if (formControl1.value !== null && formControl1.value !== '' && formGroup.valid) {
+      this.userService.putPassword(formControl1.value)
+        .subscribe((res) => {
+          return res;
+        });
+      formControl1.setValue( null);
+      formControl2.setValue( null);
     }
   }
 
@@ -71,9 +117,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.profile = new Profile();
+    this.getProfile();
     this.updateForm = new FormGroup({
-      'updateAccountName': new FormControl(null, [
+      'updateUsername': new FormControl(null, [
         accountNameValidator(),
       ]),
       'updateDisplayName': new FormControl(null),
@@ -99,10 +146,9 @@ export class ProfileComponent implements OnInit {
         updatePasswordValidator()
       ])
     });
-
   }
 
-  get updateAccountName() { return this.updateForm.get('updateAccountName'); }
+  get updateUsername() { return this.updateForm.get('updateUsername'); }
   get updateDisplayName() { return this.updateForm.get('updateDisplayName'); }
   get updateEmail() { return this.updateForm.get('updateEmail'); }
   get updatePhone() { return this.updateForm.get('updatePhone'); }
