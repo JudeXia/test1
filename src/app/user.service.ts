@@ -8,7 +8,8 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  URL = 'https://ricebook-hw6.herokuapp.com';
+  // URL = 'https://ricebook-hw6.herokuapp.com';
+  URL = 'http://localhost:3000';
   httpOptions = {
     withCredentials: true
   };

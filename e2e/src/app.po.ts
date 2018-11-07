@@ -30,4 +30,8 @@ export class AppPage {
     element(by.css('input[id=upass]')).sendKeys(password);
     return element(by.css('button[id=loginBtn]')).click();
   }
+
+  logout() {
+    return element(by.css('a[id=logout]')).click();
+  }
 }

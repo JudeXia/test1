@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 })
 
 export class FollowingService {
-  URL = 'https://ricebook-hw6.herokuapp.com';
+  // URL = 'https://ricebook-hw6.herokuapp.com';
+  URL = 'http://localhost:3000';
   httpOptions = {
     withCredentials: true
   };
