@@ -136,6 +136,13 @@
         <button type="reset" class="btn btn-outline-primary w-25 ml-3 registerBtn">Clear </button>
       </div>
 
+      <div class="text-center">
+        <small *ngIf="showMessage" id="registerMessage" [ngClass]="messageClass">
+          {{messageText}}
+        </small>
+      </div>
+      
+
     </form>
   </div>
 </div>

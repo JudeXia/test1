@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PostsService {
-  URL = 'http://localhost:3000';
+  URL = 'https://ricebook-hw6.herokuapp.com';
   httpOptions = {
     withCredentials: true
   };

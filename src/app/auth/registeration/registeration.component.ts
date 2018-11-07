@@ -12,6 +12,10 @@ import { UserService } from '../../user.service';
 export class RegisterationComponent implements OnInit {
 
   registerForm: FormGroup;
+  showMessage: boolean;
+  messageText: String;
+  messageClass: String;
+
   constructor(
     private router: Router,
     private userService: UserService
@@ -33,10 +37,23 @@ export class RegisterationComponent implements OnInit {
         confirm: this.registerForm.get('passwordGroup').get('confirm').value
       };
       return this.userService.register(userProfile)
-        .subscribe((isRegistered: boolean) => {
-          alert('Successfully Registered!');
-          console.log(isRegistered);
-      });
+        .subscribe(
+          (isRegistered) => {
+            if (isRegistered) {
+              this.messageText = 'Successfully Registered! ';
+              this.showMessage = true;
+              this.messageClass = 'text-success';
+            }
+          },
+          error => {
+            if (error.status === 403) {
+              // console.log(error);
+              this.messageText = error.error.result;
+              this.showMessage = true;
+              this.messageClass = 'text-danger';
+            }
+          }
+        );
     }
   }
 

@@ -7,7 +7,7 @@ import { ProfileService } from '../profile.service';
 import { UserService } from '../user.service';
 import { Profile } from '../profile';
 import { Comment } from './comment';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +20,8 @@ export class MainComponent implements OnInit {
     private followingService: FollowingService,
     private postsService: PostsService,
     private profileService: ProfileService,
-    private userService: UserService
+    private userService: UserService, 
+    private router: Router
   ) { }
   mainUser: Profile;
   mainFollowings: Following[] = [];
@@ -42,15 +43,13 @@ export class MainComponent implements OnInit {
               // console.log(avatars);
               let newFollowing = new Following();
               for (let i = 0; i < headlines.length; i++) {
-                for (let j = 0; j < avatars.length; j++) {
-                  if (headlines[i].userid === avatars[j].userid) {
-                    newFollowing = new Following(
-                      avatars[j].displayName,
-                      avatars[j].avatar,
-                      headlines[i].headline,
-                      headlines[i].userid
-                    );
-                  }
+                if (headlines[i].userid === avatars[i].userid) {
+                  newFollowing = new Following(
+                    avatars[i].displayName,
+                    avatars[i].avatar,
+                    headlines[i].headline,
+                    headlines[i].userid
+                  );
                 }
                 this.mainFollowings.push(newFollowing);
               }
@@ -61,6 +60,10 @@ export class MainComponent implements OnInit {
         } else {
           this.followings = [];
         }
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
   }
 
@@ -69,21 +72,26 @@ export class MainComponent implements OnInit {
       .subscribe( (res) => {
         // console.log(res);
         this.postsService.getPosts()
-        .subscribe((posts) => {
-          // console.log(posts);
-          posts.sort((post1, post2) => {
-            const d1 = new Date(post1.createdAt)
-            const d2 = new Date(post2.createdAt)
-            return d2.getTime() - d1.getTime();
+        .subscribe(
+          (posts) => {
+            // console.log(posts);
+            posts.sort((post1, post2) => {
+              const d1 = new Date(post1.createdAt)
+              const d2 = new Date(post2.createdAt)
+              return d2.getTime() - d1.getTime();
+            });
+            posts.forEach((post) => {
+              const d = new Date(post.createdAt);
+              const array = d.toString().split(' ');
+              post['date'] = array[1] + ' ' + array[2] + ' ' + array[3] + ' ' + array[4];
+            });
+            this.mainPosts = posts;
+            this.posts = posts;
           });
-          posts.forEach((post) => {
-            const d = new Date(post.createdAt);
-            const array = d.toString().split(' ');
-            post['date'] = array[1] + ' ' + array[2] + ' ' + array[3] + ' ' + array[4];
-          })
-          this.mainPosts = posts;
-          this.posts = posts;
-        });
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
   }
 

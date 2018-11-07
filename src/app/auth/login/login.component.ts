@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   users: Profile[] = [];
   isLoggedIn: boolean;
   showMessage: boolean;
+  messageText: String;
+  messageClass: String;
 
   constructor(
     private router: Router,
@@ -24,19 +26,33 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.markFormTouched(this.loginForm);
+    this.showMessage = false;
+    this.messageText = '';
     if (this.loginForm.valid) {
       const username = this.loginForm.get('username').value;
       const password = this.loginForm.get('password').value;
       return this.userService.login(username, password)
-      .subscribe((isLogin: boolean) => {
+      .subscribe(
+        isLogin => {
         if (isLogin) {
           this.isLoggedIn = true;
+          this.showMessage = true;
+          this.messageText = 'Welcome, ' + username;
+          this.messageClass = 'text-success';
           setTimeout(() => {
             this.router.navigate(['/main']);
-            }, 500);
+            }, 1000);
         } else {
           this.isLoggedIn = false;
         }
+      },
+      error => {
+        // console.log(error.status)
+        if (error.status === 401) {
+          this.showMessage = true;
+          this.messageText = 'Wrong Username or Password!';
+          this.messageClass = 'text-danger';
+          }
       });
     }
   }

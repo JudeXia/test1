@@ -27,12 +27,9 @@
         <button type="submit" class="btn btn-primary w-50">Login</button>
       </div>
       <div class="text-center">
-        <div *ngIf="isLoggedIn&&showMessage" id="successMessage">
-          Successfully Logged In!
-        </div>
-        <div *ngIf="!isLoggedIn&&showMessage" id="failMessage">
-          Wrong Account Information!
-        </div>
+        <small *ngIf="showMessage" id="loginMessage" [ngClass]="messageClass">
+          {{messageText}}
+        </small>
       </div>
     </form>
   </div>

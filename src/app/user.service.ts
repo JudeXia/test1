@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Profile } from './profile';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  URL = 'http://localhost:3000';
+  URL = 'https://ricebook-hw6.herokuapp.com';
   httpOptions = {
     withCredentials: true
   };
@@ -18,8 +18,8 @@ export class UserService {
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(this.URL + '/login', {username: username, password: password}, this.httpOptions)
-      .pipe(map(res => {
-        // console.log(res);
+      .pipe(
+        map(res => {
         if (res) {
           return true;
         } else {
@@ -36,7 +36,7 @@ export class UserService {
     return this.http.post<any>(this.URL + '/register', {userProfile: userProfile}, this.httpOptions)
       .pipe(map(res => {
         // console.log(res);
-        if (res.Status === 'Successfully Registered') {
+        if (res.result === 'Successfully Registered') {
           return true;
         } else {
           return false;
@@ -47,7 +47,7 @@ export class UserService {
   putPassword(password: string): Observable<any> {
     return this.http.put<any>(this.URL + '/password', {password: password}, this.httpOptions)
       .pipe(map(res => {
-        console.log(res);
+        // console.log(res);
           return res;
       }));
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Profile } from '../../profile';
 import { ProfileService } from '../../profile.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -14,6 +15,7 @@ export class UserComponent implements OnInit {
   headlineEditor: FormGroup;
   constructor(
     private profileService: ProfileService,
+    private router: Router
   ) { }
 
   getProfile() {
@@ -21,12 +23,20 @@ export class UserComponent implements OnInit {
     .subscribe(avatars => {
       // console.log(avatars)
       this.profile.avatar = avatars[0].avatar;
+    },
+    error => {
+      // console.log(error);
+      this.router.navigate(['/landing']);
     });
     this.profileService.getHeadlines()
     .subscribe(headlines => {
       // console.log(headlines)
       this.profile.headline = headlines[0].headline;
       this.profile.displayName = headlines[0].displayName;
+    },
+    error => {
+      // console.log(error);
+      this.router.navigate(['/landing']);
     });
 
   }
@@ -34,7 +44,7 @@ export class UserComponent implements OnInit {
   onSubmit() {
     this.headlineEditor.get('headline').markAsTouched();
     const newHeadline = this.headlineEditor.get('headline').value;
-    if(newHeadline === '') {
+    if (newHeadline === '') {
       this.headlineEditor.get('headline').setErrors({
         required: true
       });
@@ -45,6 +55,10 @@ export class UserComponent implements OnInit {
       .subscribe(res => {
         this.getProfile();
         // console.log(res);
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       })
       this.headlineEditor.get('headline').setValue('');
       this.headlineEditor.get('headline').markAsUntouched();

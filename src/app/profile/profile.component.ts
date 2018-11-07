@@ -4,6 +4,7 @@ import { ProfileService } from '../profile.service';
 import { UserService } from '../user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { accountNameValidator, updatePasswordValidator } from '../form-validator.directive';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private userService: UserService,
+    private router: Router
   ) { }
 
   pad(n, len) {
@@ -37,24 +39,44 @@ export class ProfileComponent implements OnInit {
         this.profile.email = res.email;
         this.profile.username = res.username;
         this.profile.displayName = res.displayName;
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
     this.profileService.getZipcode()
       .subscribe((res) => {
         this.profile.zipcode = res;
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
     this.profileService.getDOB()
       .subscribe((res) => {
         const d = new Date(parseInt(res, 10));
         const birthday = this.pad(d.getFullYear(), 4) + '-' + this.pad((d.getMonth() + 1), 2) + '-' + this.pad(d.getDate(), 2);
         this.profile.birthday = birthday;
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
     this.profileService.getPhone()
       .subscribe((res) => {
         this.profile.phone = res;
+      },
+      error => {
+        // console.log(error);
+        this.router.navigate(['/landing']);
       });
     this.profileService.getAvatar()
     .subscribe((res) => {
       this.profile.avatar = res[0].avatar;
+    },
+    error => {
+      // console.log(error);
+      this.router.navigate(['/landing']);
     });
   }
 
@@ -69,6 +91,10 @@ export class ProfileComponent implements OnInit {
         this.profileService.putEmail(formControl.value)
         .subscribe((res) => {
           this.profile['email'] = res.email;
+        },
+        error => {
+          // console.log(error);
+          this.router.navigate(['/landing']);
         });
         formControl.setValue(null);
       }
@@ -79,6 +105,10 @@ export class ProfileComponent implements OnInit {
         this.profileService.putZipcode(formControl.value)
         .subscribe((res) => {
           this.profile['zipcode'] = res.zipcode;
+        },
+        error => {
+          // console.log(error);
+          this.router.navigate(['/landing']);
         });
         formControl.setValue(null);
       }
@@ -89,6 +119,10 @@ export class ProfileComponent implements OnInit {
         this.profileService.putPhone(formControl.value)
         .subscribe((res) => {
           this.profile['phone'] = res.phone;
+        },
+        error => {
+          // console.log(error);
+          this.router.navigate(['/landing']);
         });
         formControl.setValue(null);
       }
@@ -101,6 +135,10 @@ export class ProfileComponent implements OnInit {
       this.userService.putPassword(formControl1.value)
         .subscribe((res) => {
           return res;
+        },
+        error => {
+          // console.log(error);
+          this.router.navigate(['/landing']);
         });
       formControl1.setValue( null);
       formControl2.setValue( null);

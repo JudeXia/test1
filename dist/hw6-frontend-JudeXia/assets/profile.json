@@ -1,0 +1,74 @@
+[
+  {
+    "userId":         1,
+    "accountName":    "xx21",
+    "displayName":    "Jude Xia",
+    "email":          "xx21@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "77005",
+    "password":       "asd",
+    "avatar":         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRQOka_pE2dn3ydIjhEObfhxNpByDH7EzGVs81JoME9NBge6y6",
+    "headline":       "I'm Jude. "
+  },
+  {
+    "userId":         2,
+    "accountName":    "sdzcxx",
+    "displayName":    "Xiao Xia",
+    "email":          "xiao.xia@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "12345",
+    "password":       "asd",
+    "avatar":         "https://farm4.staticflickr.com/3023/2788344191_c73cd3d676.jpg",
+    "headline":       "I'm Xiao. "
+  },
+  {
+    "userId":         3,
+    "accountName":    "John",
+    "displayName":    "John Lennon",
+    "email":          "John.Lennon@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "12345",
+    "password":       "asd",
+    "avatar":         "https://scontent.fhou2-1.fna.fbcdn.net/v/t1.0-9/39129979_2062587203759982_6080978967290970112_n.jpg?_nc_cat=1&oh=3bb29d8c67cdbe634b1057cb392d3369&oe=5C5DE40A",
+    "headline":       "Won't you please please help me! "
+  },
+  {
+    "userId":         4,
+    "accountName":    "Paul",
+    "displayName":    "Paul McCartney",
+    "email":          "Paul.McCartney@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "12345",
+    "password":       "asd",
+    "avatar":         "https://scontent.fhou2-1.fna.fbcdn.net/v/t1.0-9/35731693_10156681697128313_8188101480465563648_n.jpg?_nc_cat=1&oh=01232ccf4384f8896b2fecf82a8f54c5&oe=5C4B64D0",
+    "headline":       "Can't buy me love. "
+  },
+  {
+    "userId":         5,
+    "accountName":    "George",
+    "displayName":    "George Harrison",
+    "email":          "George.Harrison@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "12345",
+    "password":       "George123456",
+    "avatar":         "https://scontent.fhou2-1.fna.fbcdn.net/v/t1.0-9/39074834_2387224717985130_7376078930370887680_n.jpg?_nc_cat=104&oh=608afccdd0bf6e0af4e9d59202d6d274&oe=5C1949C2",
+    "headline":       "Something in the way she moves. "
+  },
+  {
+    "userId":         6,
+    "accountName":    "Ringo",
+    "displayName":    "Ringo Starr",
+    "email":          "Ringo.Starr@rice.edu",
+    "phoneNumber":    "1234567890",
+    "birthday":       "1994-04-10",
+    "zipcode":        "12345",
+    "password":       "Ringo123456",
+    "avatar":         "https://scontent.fhou2-1.fna.fbcdn.net/v/t1.0-9/19895040_10154863278047677_415679017027204794_n.jpg?_nc_cat=108&oh=8fa9bfce2896944fc7fc0c78b3c8b53c&oe=5C6187ED",
+    "headline":       "We all live in a Yellow Submarine~ "
+  }
+]
