@@ -16,7 +16,7 @@ export class NavigatorComponent implements OnInit {
   logout() {
     this.userService.logout()
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
       });
     this.router.navigate(['landing']);
   }
